@@ -9,7 +9,7 @@ const _ = require("lodash");
  */
 function readJsonFile(path) {
   try {
-    const data = fs.readFileSync("app/data.json", { encoding: "utf8" });
+    const data = fs.readFileSync(path, { encoding: "utf8" });
     return JSON.parse(data);
   } catch (err) {
     return [];
