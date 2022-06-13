@@ -1,4 +1,4 @@
-const fs = require("fs/promises");
+const fs = require("fs");
 const _ = require("lodash");
 
 /**
@@ -7,9 +7,9 @@ const _ = require("lodash");
  * @param {String} path
  * @returns {Object}
  */
-async function readJsonFile(path) {
+function readJsonFile(path) {
   try {
-    const data = await fs.readFile("app/data.json", { encoding: "utf8" });
+    const data = fs.readFileSync("app/data.json", { encoding: "utf8" });
     return JSON.parse(data);
   } catch (err) {
     return [];
