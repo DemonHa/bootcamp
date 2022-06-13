@@ -1,4 +1,5 @@
 const fs = require("fs/promises");
+const _ = require("lodash");
 
 async function getData() {
   try {
@@ -9,6 +10,18 @@ async function getData() {
   }
 }
 
+function concat(arr) {
+  return _.concat(arr, [1, 2, 3]);
+}
+
+function sum(arr) {
+  return arr.reduce((prev, cur) => {
+    return prev + cur;
+  }, 0);
+}
+
 module.exports = {
   getData,
+  concat,
+  sum,
 };
