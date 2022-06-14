@@ -1,4 +1,5 @@
 const fs = require("fs");
+const fss = require("fs/promises");
 const _ = require("lodash");
 
 /**
@@ -12,6 +13,25 @@ function readJsonFile(path) {
     const data = fs.readFileSync(path, { encoding: "utf8" });
     return JSON.parse(data);
   } catch (err) {
+    return [];
+  }
+}
+
+/**
+ *
+ * Reading JSON file in a non blocking way
+ *
+ * @param {String} path
+ * @returns {Object}
+ */
+async function readJsonFileAsync(path) {
+  try {
+    const data = await fss.readFile(path, {
+      encoding: "utf8",
+    });
+    return JSON.parse(data);
+  } catch (err) {
+    console.error("Somethig went wrong while reading the file");
     return [];
   }
 }
@@ -40,6 +60,7 @@ function sum(arr) {
 
 module.exports = {
   readJsonFile,
+  readJsonFileAsync,
   concat,
   sum,
 };
